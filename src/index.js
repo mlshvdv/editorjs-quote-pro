@@ -45,7 +45,6 @@
 import css from './index.scss';
 import Ui from './ui';
 import Tunes from './tunes';
-import ToolboxIcon from './svg/toolbox.svg';
 import Uploader from './uploader';
 
 /**
