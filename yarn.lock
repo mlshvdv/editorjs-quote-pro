@@ -922,32 +922,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@editorjs/quote-pro@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@editorjs/quote-pro@workspace:."
-  dependencies:
-    "@babel/core": ^7.3.4
-    "@babel/plugin-transform-runtime": ^7.2.0
-    "@babel/preset-env": ^7.3.4
-    "@babel/runtime": ^7.2.0
-    "@codexteam/ajax": ^4.2.0
-    babel-loader: ^8.0.5
-    css-loader: ^3.5.2
-    eslint: ^6.8.0
-    eslint-config-codex: ^1.3.3
-    eslint-loader: ^4.0.0
-    formidable: ^1.2.1
-    postcss-loader: ^3.0.0
-    postcss-nested: ^4.1.0
-    postcss-nested-ancestors: ^2.0.0
-    request: ^2.88.0
-    style-loader: ^1.1.4
-    svg-inline-loader: ^0.8.0
-    webpack: ^4.29.5
-    webpack-cli: ^3.2.3
-  languageName: unknown
-  linkType: soft
-
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -2861,6 +2835,32 @@ __metadata:
   checksum: 22fef4b6203e5f31d425f5b711eb389e4c6c2723402e389af394f8411b76a488fa414d309d866e2b577ce3e8462d344205545c88a8143cc21752a5172818888a
   languageName: node
   linkType: hard
+
+"editorjs-quote-pro@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "editorjs-quote-pro@workspace:."
+  dependencies:
+    "@babel/core": ^7.3.4
+    "@babel/plugin-transform-runtime": ^7.2.0
+    "@babel/preset-env": ^7.3.4
+    "@babel/runtime": ^7.2.0
+    "@codexteam/ajax": ^4.2.0
+    babel-loader: ^8.0.5
+    css-loader: ^3.5.2
+    eslint: ^6.8.0
+    eslint-config-codex: ^1.3.3
+    eslint-loader: ^4.0.0
+    formidable: ^1.2.1
+    postcss-loader: ^3.0.0
+    postcss-nested: ^4.1.0
+    postcss-nested-ancestors: ^2.0.0
+    request: ^2.88.0
+    style-loader: ^1.1.4
+    svg-inline-loader: ^0.8.0
+    webpack: ^4.29.5
+    webpack-cli: ^3.2.3
+  languageName: unknown
+  linkType: soft
 
 "electron-to-chromium@npm:^1.3.723":
   version: 1.3.736
