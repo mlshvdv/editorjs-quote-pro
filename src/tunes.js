@@ -1,7 +1,4 @@
 import { make } from './ui';
-import bgIcon from './svg/background.svg';
-import borderIcon from './svg/border.svg';
-import stretchedIcon from './svg/stretched.svg';
 
 /**
  * Working with Block Tunes
