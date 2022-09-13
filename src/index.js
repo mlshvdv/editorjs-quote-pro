@@ -229,7 +229,7 @@ export default class QuotePro {
    * @public
    */
   appendCallback() {
-    this.ui.nodes.fileButton.click();
+    // this.ui.nodes.fileButton.click();
   }
 
   /**
