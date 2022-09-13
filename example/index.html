@@ -1,0 +1,200 @@
+<!--
+ Use this page for debugging purposes.
+ Editor Tools are loaded as git-submodules.
+ You can pull modules by running `yarn pull_tools` and start experimenting.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor.js 🤩🧦🤨 example</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link href="assets/demo.css" rel="stylesheet">
+    <script src="assets/json-preview.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+<div class="ce-example">
+    <div class="ce-example__header">
+        <a class="ce-example__header-logo" href="https://codex.so/editor">Editor.js 🤩🧦🤨</a>
+
+        <div class="ce-example__header-menu">
+            <a href="https://github.com/editor-js" target="_blank">Plugins</a>
+            <a href="https://editorjs.io/usage" target="_blank">Usage</a>
+            <a href="https://editorjs.io/configuration" target="_blank">Configuration</a>
+            <a href="https://editorjs.io/creating-a-block-tool" target="_blank">API</a>
+        </div>
+    </div>
+    <div class="ce-example__content _ce-example__content--small">
+        <div id="editorjs"></div>
+        <div id="hint" style="text-align: center;">
+            No submodules found. Run <code class="inline-code">yarn pull_tools</code>
+        </div>
+        <div class="ce-example__button" id="saveButton">
+            editor.save()
+        </div>
+        <div class="ce-example__statusbar">
+            Readonly:
+            <b id="readonly-state">
+                Off
+            </b>
+            <div class="ce-example__statusbar-button" id="toggleReadOnlyButton">
+                toggle
+            </div>
+        </div>
+    </div>
+    <div class="ce-example__output">
+        <pre class="ce-example__output-content" id="output"></pre>
+
+        <div class="ce-example__output-footer">
+            <a href="https://codex.so" style="font-weight: bold;">Made by CodeX</a>
+        </div>
+    </div>
+</div>
+
+<!-- Load Tools -->
+<!--
+ You can upload Tools to your project's directory and use as in example below.
+ Also you can load each Tool from CDN or use NPM/Yarn packages.
+ Read more in Tool's README file. For example:
+ https://github.com/editor-js/header#installation
+ -->
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+<script src="../dist/bundle.js" onload="document.getElementById('hint').hidden = true"></script>
+<!-- script src="../src/index.js" onload="document.getElementById('hint').hidden = true"></script -->
+
+<!-- Initialization -->
+<script>
+
+    const saveButton = document.getElementById('saveButton');
+
+    /**
+     * To initialize the Editor, create a new instance with configuration object
+     * @see docs/installation.md for mode details
+     */
+    var editor = new EditorJS({
+        readOnly: false,
+        /**
+         * Wrapper of Editor
+         */
+        holder: 'editorjs',
+
+        /**
+         * Tools list
+         */
+        tools: {
+            quote: {
+                class: QuotePro,
+                config: {
+                    layouts: [
+                        {
+                            name: 'default',
+                            icon: `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M6.88 3.468c.132-.332.34-.66.618-.976a.295.295 0 0 0-.304-.48c-.588.172-1.962.782-2 2.738-.014.754.538 1.402 1.256 1.476.398.04.794-.09 1.088-.354C7.832 5.606 8 5.226 8 4.83c0-.66-.468-1.238-1.12-1.362ZM3.258 6.226c.396.04.792-.09 1.086-.354.294-.266.462-.646.462-1.042 0-.66-.468-1.238-1.12-1.362.132-.332.34-.66.618-.976A.295.295 0 0 0 4 2.012c-.588.172-1.962.782-2 2.738v.028c0 .742.546 1.374 1.258 1.448ZM17.12 20.509c-.132.331-.34.66-.618.976a.295.295 0 0 0 .304.48c.588-.172 1.962-.782 2-2.738.014-.755-.538-1.402-1.256-1.477-.398-.04-.794.09-1.088.355A1.407 1.407 0 0 0 16 19.146c0 .66.468 1.238 1.12 1.363ZM20.742 17.75c-.396-.04-.792.09-1.086.355a1.407 1.407 0 0 0-.462 1.041c0 .66.468 1.238 1.12 1.363-.132.331-.34.66-.618.976a.295.295 0 0 0 .304.48c.588-.172 1.962-.782 2-2.738v-.029c0-.742-.546-1.373-1.258-1.448Z" /><rect x="6" y="8" width="12" height="2" rx="1" /><rect x="6" y="14" width="4" height="2" rx="1" /><rect x="6" y="11" width="12" height="2" rx="1" /></svg>`,
+                            title: 'Default',
+                        },
+                        {
+                            name: 'blockquote-vertical',
+                            icon: `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="12" height="2" rx="1" /><rect x="2" y="22" width="20" height="1" rx=".5" transform="rotate(-90 2 22)" /><rect x="6" y="14" width="4" height="2" rx="1" /><rect x="6" y="11" width="12" height="2" rx="1" /></svg>`,
+                            title: 'Vertical block quote',
+                        },
+                        {
+                            name: 'blockquote-horizontal',
+                            icon: `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="12" height="2" rx="1" /><rect x="2" y="3" width="7" height="1" rx=".5" /><rect x="15" y="3" width="7" height="1" rx=".5" /><rect x="2" y="20" width="20" height="1" rx=".5" /><rect x="6" y="14" width="4" height="2" rx="1" /><rect x="6" y="11" width="12" height="2" rx="1" /><path d="M10.794 3.96c-.094.235-.241.467-.438.691a.21.21 0 0 0 .215.34c.417-.121 1.39-.554 1.418-1.94.01-.534-.382-.994-.89-1.046a1.005 1.005 0 0 0-.772.25.998.998 0 0 0-.327.74c0 .467.332.877.794.965ZM13.36 2.005a1.004 1.004 0 0 0-.769.25.997.997 0 0 0-.327.74c0 .467.331.877.793.965-.093.235-.24.467-.438.691a.21.21 0 0 0 .216.34c.416-.121 1.39-.554 1.417-1.94v-.02c0-.526-.387-.974-.891-1.026Z" /></svg>`,
+                            title: 'Horizontal block quote',
+                        },
+                        {
+                            name: 'on-background',
+                            icon: `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path fill="#9B9B9B" fill-opacity=".31" d="M2 2h20v20H2z"/><rect x="6" y="8" width="12" height="2" rx="1" /><rect x="6" y="14" width="4" height="2" rx="1" /><rect x="6" y="11" width="12" height="2" rx="1" /></svg>`,
+                            title: 'On the background',
+                        },
+                        {
+                            name: 'with-avatar',
+                            icon: `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path fill="#9B9B9B" fill-opacity=".31" d="M2 2h20v20H2z"/><rect x="4" y="11" width="16" height="2" rx="1" /><rect x="4" y="17" width="6" height="2" rx="1" /><rect x="9" y="6" width="7" height="2" rx="1" /><rect x="4" y="14" width="16" height="2" rx="1" /><g clip-path="url(#a)"><path d="M4.586 5.586C4.964 5.208 5.466 5 6 5c.534 0 1.036.208 1.414.586C7.792 5.964 8 6.466 8 7c0 .534-.208 1.036-.586 1.414C7.036 8.792 6.534 9 6 9a1.987 1.987 0 0 1-1.414-.586A1.987 1.987 0 0 1 4 7c0-.534.208-1.036.586-1.414ZM6 8.766c.522 0 .992-.229 1.316-.59-.2-.532-.714-.91-1.316-.91a.703.703 0 1 0 0-1.407.703.703 0 0 0 0 1.407c-.602 0-1.115.378-1.316.91.324.361.794.59 1.316.59Z" /></g><defs><clipPath id="a"><path fill="#fff" transform="matrix(-1 0 0 1 8 5)" d="M0 0h4v4H0z"/></clipPath></defs></svg>`,
+                            title: 'With avatar',
+                        },
+                    ],
+                    endpoints: {
+                        byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
+                        byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+                    }
+                }
+            },
+        },
+        /**
+         * Previously saved data that should be rendered
+         */
+        data: {
+            "time": 1609681433283,
+            "blocks": [
+                {
+                    "type": "quote",
+                    "data": {
+                        "layout": "blockquote-vertical",
+                        "text": "The way to get started is to quit talking and begin doing",
+                        "caption": "Walt Disney",
+                        "description": "An American animator, film producer and entrepreneur",
+                        "file": {
+                            "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Walt_Disney_1946.JPG"
+                        }
+                    }
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking",
+                        "caption": "Steve Jobs",
+                    }
+                },
+                {
+                    "type": "paragraph",
+                    "data": {"text": "readonly paragraph"}
+                }
+            ],
+            "version": "2.25.0"
+        },
+
+        /**
+         * This Tool will be used as default
+         */
+        // initialBlock: 'paragraph',
+
+        /**
+         * Initial Editor data
+         */
+
+        onReady: function () {
+            saveButton.click();
+        },
+        onChange: function () {
+            console.log('something changed');
+        },
+    });
+
+    editor.isReady.then(() => {
+
+    })
+
+    /**
+     * Saving example
+     */
+    saveButton.addEventListener('click', function () {
+        editor.save().then((savedData) => {
+            cPreview.show(savedData, document.getElementById("output"));
+        });
+    });
+
+    /**
+     * Toggle read-only button
+     */
+    const toggleReadOnlyButton = document.getElementById('toggleReadOnlyButton');
+    const readOnlyIndicator = document.getElementById('readonly-state');
+    /**
+     * Toggle read-only example
+     */
+    toggleReadOnlyButton.addEventListener('click', async () => {
+        const readOnlyState = await editor.readOnly.toggle();
+        readOnlyIndicator.textContent = readOnlyState ? 'On' : 'Off';
+    });
+</script>
+</body>
+</html>
