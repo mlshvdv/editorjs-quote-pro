@@ -75,17 +75,17 @@ export default class Ui {
             /**
              * Tool's classes
              */
-            wrapper: 'image-tool',
-            row: 'image-tool__row',
-            imageWrapper: 'image-tool__image-wrapper',
-            imageContainer: 'image-tool__image',
-            imagePreloader: 'image-tool__image-preloader',
-            imageEl: 'image-tool__image-picture',
-            textFieldsWrapper: 'image-tool__text-fields-wrapper',
-            text: 'image-tool__text',
-            caption: 'image-tool__caption',
-            description: 'image-tool__description',
-            removeButton: 'image-tool__remove-button',
+            wrapper: 'quote-pro-tool',
+            row: 'quote-pro-tool__row',
+            imageWrapper: 'quote-pro-tool__image-wrapper',
+            imageContainer: 'quote-pro-tool__image',
+            imagePreloader: 'quote-pro-tool__image-preloader',
+            imageEl: 'quote-pro-tool__image-picture',
+            textFieldsWrapper: 'quote-pro-tool__text-fields-wrapper',
+            text: 'quote-pro-tool__text',
+            caption: 'quote-pro-tool__caption',
+            description: 'quote-pro-tool__description',
+            removeButton: 'quote-pro-tool__remove-button',
         };
     };
 
