@@ -172,6 +172,27 @@ export default class QuotePro {
   }
 
   /**
+   * Allow to be converted to/from other blocks
+   */
+  static get conversionConfig() {
+    return {
+      /**
+       * To create data from string, simple fill 'text' property
+       */
+      import: 'text',
+      /**
+       * To create string from Button data, concatenate text and caption
+       *
+       * @returns {string}
+       * @param data
+       */
+      export: function (data) {
+        return `${data.text} — ${data.caption}`;
+      },
+    };
+  }
+
+  /**
    * Renders Block content
    *
    * @public
